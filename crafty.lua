@@ -15,7 +15,8 @@ local crafty = T{
 -- Columns: { level, name, materials, notes }
 local CRAFTS = {
     {
-        name  = 'Woodworking',
+        name     = 'Woodworking',
+        skill_id = 1,
         color = { 0.60, 0.85, 0.50, 1.0 },
         recipes = {
             {  5, 'Maple Lumber',         'Maple Log',                      '' },
@@ -46,7 +47,8 @@ local CRAFTS = {
         },
     },
     {
-        name  = 'Smithing',
+        name     = 'Smithing',
+        skill_id = 2,
         color = { 0.75, 0.75, 0.80, 1.0 },
         recipes = {
             {  4, 'Bronze Sheet',         'Bronze Ore/Ingot',               '' },
@@ -81,7 +83,8 @@ local CRAFTS = {
         },
     },
     {
-        name  = 'Goldsmithing',
+        name     = 'Goldsmithing',
+        skill_id = 3,
         color = { 1.00, 0.85, 0.30, 1.0 },
         recipes = {
             {  3, 'Copper Ingot',         'Copper Ore',                     '' },
@@ -112,7 +115,8 @@ local CRAFTS = {
         },
     },
     {
-        name  = 'Clothcraft',
+        name     = 'Clothcraft',
+        skill_id = 4,
         color = { 0.85, 0.60, 0.85, 1.0 },
         recipes = {
             {  3, 'Grass Thread',         'Grass Fiber',                    'Skill to 6' },
@@ -151,7 +155,8 @@ local CRAFTS = {
         },
     },
     {
-        name  = 'Leathercraft',
+        name     = 'Leathercraft',
+        skill_id = 5,
         color = { 0.80, 0.55, 0.35, 1.0 },
         recipes = {
             {  2, 'Sheep Leather',        'Sheep Hide',                     '' },
@@ -179,7 +184,8 @@ local CRAFTS = {
         },
     },
     {
-        name  = 'Bonecraft',
+        name     = 'Bonecraft',
+        skill_id = 6,
         color = { 0.90, 0.80, 0.65, 1.0 },
         recipes = {
             {  4, 'Bone Hairpin',         'Bone materials',                 '' },
@@ -209,7 +215,8 @@ local CRAFTS = {
         },
     },
     {
-        name  = 'Alchemy',
+        name     = 'Alchemy',
+        skill_id = 7,
         color = { 0.50, 0.85, 0.95, 1.0 },
         recipes = {
             {  6, 'Tsurara',              '',                               '' },
@@ -242,7 +249,8 @@ local CRAFTS = {
         },
     },
     {
-        name  = 'Cooking',
+        name     = 'Cooking',
+        skill_id = 8,
         color = { 1.00, 0.65, 0.40, 1.0 },
         recipes = {
             {  3, 'Carrot Broth',         'Water Crystal, San d\'Orian Carrot x4',                                                   '' },
@@ -252,7 +260,7 @@ local CRAFTS = {
             { 20, 'Selbina Butter',       'Ice Crystal, Selbina Milk, Rock Salt',                                                     '' },
             { 20, 'Apple Juice',          'Water Crystal, Faerie Apple x4',                                                           'Craft and dump at NPC' },
             { 22, 'Baked Popoto',         'Fire Crystal, Popoto, Selbina Butter',                                                     '' },
-            { 29, 'Insect Ball',          'Earth Crystal, Millioncorn, Little Worm, Distilled Water',             F                    '' },
+            { 29, 'Insect Ball',          'Earth Crystal, Millioncorn, Little Worm, Distilled Water',                                 '' },
             { 34, 'Iron Bread',           'Fire Crystal, San d\'Orian Flour, Rock Salt, Distilled Water',                             '' },
             { 40, 'Ulbuconut Milk',       'Wind Crystal, Elshimo Coconut or Ulbuconut',                                               '' },
             { 42, 'Pie Dough',            'Water Crystal, San d\'Orian Flour, Selbina Butter, Rock Salt',                             '' },
@@ -294,6 +302,16 @@ ashita.events.register('command', 'crafty_command', function(e)
 end);
 
 -- Helpers
+local function get_craft_skill(skill_id)
+    local player = AshitaCore:GetMemoryManager():GetPlayer();
+    if (player == nil) then return 0, false; end
+
+    local ok, skill = pcall(function() return player:GetCraftSkill(skill_id); end);
+    if (not ok or skill == nil) then return 0, false; end
+
+    return skill:GetSkill(), skill:IsCapped();
+end
+
 local function matches_search(recipe, term)
     if (term == '') then return true; end
     local lterm = term:lower();
@@ -334,6 +352,10 @@ ashita.events.register('d3d_present', 'crafty_present', function()
             if (imgui.BeginTabItem(craft.name, nil, ImGuiTabItemFlags_None)) then
                 imgui.PopStyleColor(3);
 
+                local my_skill, my_capped = get_craft_skill(craft.skill_id);
+                imgui.TextColored(tab_color, ('Your %s Skill: %d%s'):format(craft.name, my_skill, my_capped and ' (Capped)' or ''));
+                imgui.Separator();
+
                 local flags = bit.bor(
                     ImGuiTableFlags_BordersOuter,
                     ImGuiTableFlags_BordersInnerH,
@@ -354,13 +376,16 @@ ashita.events.register('d3d_present', 'crafty_present', function()
 
                     for _, r in ipairs(craft.recipes) do
                         if (matches_search(r, term)) then
+                            local reachable = my_skill >= r[1];
+                            local row_color = reachable and { 0.40, 1.00, 0.40, 1.0 } or { 1.00, 1.00, 1.00, 1.0 };
+
                             imgui.TableNextRow();
                             imgui.TableSetColumnIndex(0);
-                            imgui.TextColored(tab_color, tostring(r[1]));
+                            imgui.TextColored(row_color, (reachable and '+ ' or '  ') .. tostring(r[1]));
                             imgui.TableSetColumnIndex(1);
-                            imgui.TextUnformatted(r[2]);
+                            imgui.TextColored(row_color, r[2]);
                             imgui.TableSetColumnIndex(2);
-                            imgui.TextUnformatted(r[3]);
+                            imgui.TextColored(row_color, r[3]);
                             imgui.TableSetColumnIndex(3);
                             if (r[4] ~= '') then
                                 imgui.TextColored({ 0.75, 0.75, 0.75, 1.0 }, r[4]);
