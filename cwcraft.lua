@@ -1,4 +1,4 @@
-addon.name    = 'crafty';
+addon.name    = 'cwcraft';
 addon.author  = 'Lexia';
 addon.version = '1.0';
 addon.desc    = 'CatsEyeXI crafting guide viewer (bg-wiki Suggested Recipes)';
@@ -6,7 +6,7 @@ addon.desc    = 'CatsEyeXI crafting guide viewer (bg-wiki Suggested Recipes)';
 require('common');
 local imgui = require('imgui');
 
-local crafty = T{
+local cwcraft = T{
     is_open = T{ true },
     search  = T{ string.rep('\0', 128) },
 };
@@ -284,20 +284,20 @@ local CRAFTS = {
 };
 
 -- Event: load
-ashita.events.register('load', 'crafty_load', function()
+ashita.events.register('load', 'cwcraft_load', function()
 end);
 
 -- Event: unload
-ashita.events.register('unload', 'crafty_unload', function()
+ashita.events.register('unload', 'cwcraft_unload', function()
 end);
 
 -- Event: command
-ashita.events.register('command', 'crafty_command', function(e)
+ashita.events.register('command', 'cwcraft_command', function(e)
     local args = e.command:args();
     if (#args == 0) then return; end
-    if (args[1]:lower() ~= '/crafty') then return; end
+    if (args[1]:lower() ~= '/cwcraft') then return; end
 
-    crafty.is_open[1] = not crafty.is_open[1];
+    cwcraft.is_open[1] = not cwcraft.is_open[1];
     e.blocked = true;
 end);
 
@@ -323,26 +323,26 @@ local function matches_search(recipe, term)
 end
 
 -- Event: d3d_present (render)
-ashita.events.register('d3d_present', 'crafty_present', function()
-    if (not crafty.is_open[1]) then return; end
+ashita.events.register('d3d_present', 'cwcraft_present', function()
+    if (not cwcraft.is_open[1]) then return; end
 
     imgui.SetNextWindowSize({ 700, 500 }, ImGuiCond_FirstUseEver);
     imgui.SetNextWindowSizeConstraints({ 400, 200 }, { 1600, 1200 });
 
-    if (not imgui.Begin('Crystal Warrior Crafting Guide', crafty.is_open, ImGuiWindowFlags_None)) then
+    if (not imgui.Begin('Crystal Warrior Crafting Guide', cwcraft.is_open, ImGuiWindowFlags_None)) then
         imgui.End();
         return;
     end
 
     -- Search bar
     imgui.SetNextItemWidth(-1);
-    imgui.InputText('##crafty_search', crafty.search, 128);
-    local term = crafty.search[1]:match('^[^%z]*') or '';
+    imgui.InputText('##cwcraft_search', cwcraft.search, 128);
+    local term = cwcraft.search[1]:match('^[^%z]*') or '';
 
     imgui.Spacing();
 
     -- Tab bar for each craft
-    if (imgui.BeginTabBar('##crafty_tabs', ImGuiTabBarFlags_None)) then
+    if (imgui.BeginTabBar('##cwcraft_tabs', ImGuiTabBarFlags_None)) then
         for _, craft in ipairs(CRAFTS) do
             local tab_color = craft.color;
             imgui.PushStyleColor(ImGuiCol_Tab,        { tab_color[1]*0.5, tab_color[2]*0.5, tab_color[3]*0.5, 0.8 });
@@ -366,7 +366,7 @@ ashita.events.register('d3d_present', 'crafty_present', function()
 
                 local avail_x, avail_y = imgui.GetContentRegionAvail();
 
-                if (imgui.BeginTable('##crafty_table_' .. craft.name, 4, flags, { avail_x, avail_y })) then
+                if (imgui.BeginTable('##cwcraft_table_' .. craft.name, 4, flags, { avail_x, avail_y })) then
                     imgui.TableSetupScrollFreeze(0, 1);
                     imgui.TableSetupColumn('Lvl',       ImGuiTableColumnFlags_WidthFixed,   40);
                     imgui.TableSetupColumn('Recipe',    ImGuiTableColumnFlags_WidthFixed,   160);
