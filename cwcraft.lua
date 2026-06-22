@@ -15,6 +15,38 @@ local cwcraft = T{
 -- Columns: { level, name, materials, notes }
 local CRAFTS = {
     {
+        name     = 'Fishing',
+        skill_id = 0,
+        color = { 0.35, 0.70, 1.00, 1.0 },
+        recipes = {
+            {  0, 'Crayfish',       'Halcyon Rod, Little Worm',                  'West Ronfaure' },
+            {  7, 'Moat Carp',      'Halcyon Rod, Insect Ball',                  'West Ronfaure' },
+            { 11, 'Quus',           'Halcyon Rod, Sabiki Rig',                   'Korroloka Tunnel' },
+            { 19, 'Cheval Salmon',  'Halcyon Rod, Fly Lure',                     'East Ronfaure river' },
+            { 21, 'Nebimonite',     'Halcyon Rod, Shrimp Lure',                  'Sea Serpent Grotto' },
+            { 27, 'Pipira',         'Halcyon Rod, Minnow',                       'Windurst Waters' },
+            { 29, 'Ogre Eel',       'Halcyon Rod, Shrimp Lure',                  'Multiple sea locations' },
+            { 35, 'Nosteau Herring','Halcyon Rod, Sardine Ball',                 'Qufim Island' },
+            { 39, 'Coral Butterfly','Halcyon Rod, Worm Lure',                    'Kazham' },
+            { 40, 'Black Eel',      'Halcyon Rod, Trout Ball',                   'Zeruhn Mines' },
+            { 47, 'Icefish',        'Halcyon Rod, Sabiki Rig',                   'Beaucedine Glacier' },
+            { 49, 'Giant Donko',    'Composite Rod, Frog Lure',                  'Rabao / E. Altepa Desert' },
+            { 50, 'Elshimo Newt',   'Halcyon Rod, Frog Lure',                    'Yhoator Jungle' },
+            { 60, 'Crescent Fish',  'Halcyon Rod, Fly Lure',                     'East Sarutabaruta' },
+            { 69, 'Zebra Eel',      'Composite Rod, Shrimp Lure',                'Den of Rancor' },
+            { 70, 'Bladefish',      'Composite Rod, Meatball / Slice of Bluetail','Multiple seas' },
+            { 71, 'Gavial Fish',    'Composite Rod, Lizard Lure / Meatball',     'North Gustaberg' },
+            { 81, 'Bastore Bream',  'Composite Rod, Shrimp Lure',                'Port Windurst / Bastok' },
+            { 81, 'Mercanbaligi',   'Composite Rod, Shrimp Lure',                'Nashmau' },
+            { 86, 'Ahtapot',        'Composite Rod, Shrimp Lure',                'Nashmau' },
+            { 90, 'Emperor Fish',   'Composite Rod, Peeled Crayfish / Trout Ball','Beaucedine / Jugner' },
+            { 91, 'Dil',            'Halcyon / Hume Rod, Sliced Cod',            'Talacca Cove' },
+            { 91, 'Black Sole',     'Composite / Halcyon / Hume Rod, Sinking Minnow / Sliced Cod','Jeuno / Qufim' },
+            { 96, 'Armored Pisces', 'Composite Rod, Frog Lure / Minnow',         'Oldton Movalpolos' },
+            {108, 'Gerrothorax',    'Composite Rod, Meatball',                   'Pashhow Marshlands (S)' },
+        },
+    },
+    {
         name     = 'Woodworking',
         skill_id = 1,
         color = { 0.60, 0.85, 0.50, 1.0 },
@@ -253,35 +285,131 @@ local CRAFTS = {
         skill_id = 8,
         color = { 1.00, 0.65, 0.40, 1.0 },
         recipes = {
-            {  3, 'Carrot Broth',         'Water Crystal, San d\'Orian Carrot x4',                                                   '' },
-            {  4, 'Hard-boiled Egg',      'Fire Crystal, Lizard Egg x4 (or Bird Egg x6), Distilled Water',                           '' },
-            { 10, 'Orange Juice',         'Water Crystal, Saruta Orange x4',                                                          '' },
-            { 14, 'Tortilla',             'Fire Crystal, Olive Oil, San d\'Orian Flour, Millioncorn, Rock Salt',                      '' },
-            { 20, 'Selbina Butter',       'Ice Crystal, Selbina Milk, Rock Salt',                                                     '' },
-            { 20, 'Apple Juice',          'Water Crystal, Faerie Apple x4',                                                           'Craft and dump at NPC' },
-            { 22, 'Baked Popoto',         'Fire Crystal, Popoto, Selbina Butter',                                                     '' },
-            { 29, 'Insect Ball',          'Earth Crystal, Millioncorn, Little Worm, Distilled Water',                                 '' },
-            { 34, 'Iron Bread',           'Fire Crystal, San d\'Orian Flour, Rock Salt, Distilled Water',                             '' },
-            { 40, 'Ulbuconut Milk',       'Wind Crystal, Elshimo Coconut or Ulbuconut',                                               '' },
-            { 42, 'Pie Dough',            'Water Crystal, San d\'Orian Flour, Selbina Butter, Rock Salt',                             '' },
-            { 48, 'Apple Pie',            'Fire Crystal, Pie Dough, Maple Sugar, Cinnamon, Lizard Egg, Faerie Apple',                 'Cap test item' },
-            { 50, 'Grape Juice',          'Dark Crystal, San d\'Orian Grape x4',                                                      'Used in later recipes at Lv56 & Lv86' },
-            { 51, 'Orange au Lait',       'Water Crystal, Saruta Orange x2, Honey, Selbina Milk',                                    '' },
-            { 56, 'Mulsum',               'Ice Crystal, Grape Juice, Honey, Distilled Water',                                         '' },
-            { 60, 'Yagudo Drink',         'Dark Crystal, Yagudo Cherry, Buburimu Grape x3',                                           'Cap test item' },
-            { 61, 'Stone Cheese',         'Dark Crystal, Selbina Milk, Rock Salt',                                                    'Cheaper alt; vendor back to break even' },
-            { 62, 'Apple au Lait',        'Water Crystal, Faerie Apple x2, Honey, Selbina Milk',                                     '' },
-            { 68, 'Colored Egg',          'Fire Crystal, San d\'Orian Carrot, Lizard/Bird Egg, La Theine Cabbage, Distilled Water',  '' },
-            { 72, 'Pear au Lait',         'Water Crystal, Derfland Pear x2, Honey, Selbina Milk',                                   '' },
-            { 79, 'Chocomilk',            'Fire Crystal, Kukuru Bean x4, Selbina Milk, Maple Sugar, Distilled Water, Honey',         '' },
-            { 81, 'Pamama au Lait',       'Water Crystal, Pamamas x2, Honey, Selbina Milk',                                          '' },
-            { 86, 'Marron Glace',         'Dark Crystal, Maple Sugar, Chestnut x2, Grape Juice',                                     '' },
-            { 90, 'Fried Pototo',         'Fire Crystal, Popoto, Olive Oil, White Bread, Bird Egg',                                   'Profitable; ride to 101 while earning gil' },
-            { 97, 'Dawn Mulsum',          'Ice Crystal, Holy Water, White Honey, Grape Juice',                                        '' },
-            {105, 'Dragon Fruit au Lait', 'Water Crystal, Honey, Selbina Milk, Dragon Fruit x2',                                     '' },
+            {  3, 'Carrot Broth',         'San d\'Orian Carrot x4',                                                   '' },
+            {  4, 'Hard-boiled Egg',      'Lizard Egg x4 (or Bird Egg x6), Distilled Water',                           '' },
+            { 10, 'Orange Juice',         'Saruta Orange x4',                                                          '' },
+            { 14, 'Tortilla',             'Olive Oil, San d\'Orian Flour, Millioncorn, Rock Salt',                      '' },
+            { 20, 'Selbina Butter',       'Selbina Milk, Rock Salt',                                                     '' },
+            { 20, 'Apple Juice',          'Faerie Apple x4',                                                           'Craft and dump at NPC' },
+            { 22, 'Baked Popoto',         'Popoto, Selbina Butter',                                                     '' },
+            { 29, 'Insect Ball',          'Millioncorn, Little Worm, Distilled Water',                                 '' },
+            { 34, 'Iron Bread',           'San d\'Orian Flour, Rock Salt, Distilled Water',                             '' },
+            { 40, 'Ulbuconut Milk',       'Elshimo Coconut or Ulbuconut',                                               '' },
+            { 42, 'Pie Dough',            'San d\'Orian Flour, Selbina Butter, Rock Salt',                             '' },
+            { 48, 'Apple Pie',            'Pie Dough, Maple Sugar, Cinnamon, Lizard Egg, Faerie Apple',                 'Cap test item' },
+            { 50, 'Grape Juice',          'San d\'Orian Grape x4',                                                      'Used in later recipes at Lv56 & Lv86' },
+            { 51, 'Orange au Lait',       'Saruta Orange x2, Honey, Selbina Milk',                                    '' },
+            { 56, 'Mulsum',               'Grape Juice, Honey, Distilled Water',                                         '' },
+            { 60, 'Yagudo Drink',         'Yagudo Cherry, Buburimu Grape x3',                                           'Cap test item' },
+            { 61, 'Stone Cheese',         'Selbina Milk, Rock Salt',                                                    'Cheaper alt; vendor back to break even' },
+            { 62, 'Apple au Lait',        'Faerie Apple x2, Honey, Selbina Milk',                                     '' },
+            { 68, 'Colored Egg',          'San d\'Orian Carrot, Lizard/Bird Egg, La Theine Cabbage, Distilled Water',  '' },
+            { 72, 'Pear au Lait',         'Derfland Pear x2, Honey, Selbina Milk',                                   '' },
+            { 79, 'Chocomilk',            'Kukuru Bean x4, Selbina Milk, Maple Sugar, Distilled Water, Honey',         '' },
+            { 81, 'Pamama au Lait',       'Pamamas x2, Honey, Selbina Milk',                                          '' },
+            { 86, 'Marron Glace',         'Maple Sugar, Chestnut x2, Grape Juice',                                     '' },
+            { 90, 'Fried Pototo',         'Popoto, Olive Oil, White Bread, Bird Egg',                                   'Profitable; ride to 101 while earning gil' },
+            { 97, 'Dawn Mulsum',          'Holy Water, White Honey, Grape Juice',                                        '' },
+            {105, 'Dragon Fruit au Lait', 'Honey, Selbina Milk, Dragon Fruit x2',                                     '' },
         },
     },
 };
+
+------------------------------------------------------------------------
+-- Material sources
+-- Key = material name string (should match what appears in recipes[3]).
+-- Each entry is a list of sources: { type, desc }
+-- Types: 'log' | 'mine' | 'harvest' | 'excavate' | 'dig' | 'buy' | 'farm'
+------------------------------------------------------------------------
+
+local SOURCES = {
+    -- Woodworking logs
+    ['Maple Log']        = { { type='log',  desc='East/West Ronfaure, La Theine Plateau' } },
+    ['Ash Log']          = { { type='log',  desc='West Ronfaure, Jugner Forest, La Theine Plateau' } },
+    ['Willow Log']       = { { type='log',  desc='Jugner Forest, Batallia Downs' } },
+    ['Walnut Log']       = { { type='log',  desc='Batallia Downs, North Gustaberg' } },
+    ['Yew Log']          = { { type='log',  desc='Batallia Downs, Rolanberry Fields, Grauberg (S)' } },
+    ['Elm Log']          = { { type='log',  desc='Pashhow Marshlands, Rolanberry Fields, Grauberg (S)' } },
+    ['Chestnut Log']     = { { type='log',  desc='Rolanberry Fields, Sauromugue Champaign, La Theine Plateau' } },
+    ['Oak Log']          = { { type='log',  desc='Sauromugue Champaign, Meriphataud Mountains' } },
+    ['Rosewood Log']     = { { type='log',  desc='Yhoator Jungle, Yuhtunga Jungle' } },
+    ['Mahogany Log']     = { { type='log',  desc='Yhoator Jungle, Cape Teriggan' } },
+    ['Ebony Log']        = { { type='log',  desc='Xarcabard, Uleguerand Range, Bibiki Bay' } },
+    ['Kapor Log']        = { { type='log',  desc='Yhoator Jungle' } },
+    ['Jacaranda Log']    = { { type='log',  desc='Grauberg (S) (Very Rare), East Ronfaure (S)' } },
+    -- Smithing ores
+    ['Tin Ore']          = { { type='buy',  desc='N Sandy (E-5) Doggomehr or Bastok Metalworks (E-9) Amulya' } },
+    ['Iron Ore']         = { { type='mine', desc='Zeruhn Mines, Gusgen Mines, Konschtat Highlands' },
+                              { type='buy',  desc='Bastok Mines - Tforge (H-8)' } },
+    ['Copper Ore']       = { { type='mine', desc='Zeruhn Mines, Gusgen Mines' },
+                              { type='buy',  desc='Port Bastok - Werei (J-8)' } },
+    ['Darksteel Ore']    = { { type='mine', desc='Ifrit\'s Cauldron, Beaucedine Glacier' } },
+    ['Adaman Ore']       = { { type='mine', desc='Garlaige Citadel (S) (Very Rare)' },
+                              { type='farm', desc='Pygmytoise in Gustav Tunnel' } },
+    ['Wootz Ore']        = { { type='mine', desc='Grauberg (S) (Very Rare), Mog Garden (Mineral Vein, Rank 6+)' } },
+    -- Goldsmithing ores
+    ['Silver Ore']       = { { type='mine', desc='Gusgen Mines, Ordelle\'s Caves, Konschtat Highlands' } },
+    ['Mythril Ore']      = { { type='mine', desc='Palborough Mines, Gustav Tunnel' } },
+    ['Gold Ore']         = { { type='mine', desc='Ifrit\'s Cauldron, Gustav Tunnel' } },
+    ['Platinum Ore']     = { { type='mine', desc='Ordelle\'s Caves (Very Rare), Konschtat Highlands (seasonal)' },
+                              { type='buy',  desc='Bastok Markets - Teerth (H-8), req. Craftsman rank' } },
+    ['Orichalcum Ore']   = { { type='mine', desc='Gustav Tunnel (Crystal Warrior only), Konschtat Highlands (seasonal)' } },
+    -- Clothcraft
+    ['Grass Fiber']      = { { type='harvest', desc='East/West Sarutabaruta, Tahrongi Canyon' } },
+    ['Cotton Fiber']     = { { type='harvest', desc='Tahrongi Canyon, Buburimu Peninsula' } },
+    ['Yagudo Feather']   = { { type='buy',  desc='Windurst Waters (H-8) Maqu Molpih / N Sandy Antonian, 36g' },
+                              { type='farm', desc='Yagudo in E/W Sarutabaruta, Tahrongi Canyon' } },
+    ['Bird Feather']     = { { type='farm', desc='Birds in N/S Gustaberg, La Theine Plateau, Batallia Downs' } },
+    ['Rainbow Thread']   = { { type='harvest', desc='Crawlers\' Nest (Very Rare, quest-gated)' } },
+    -- Leathercraft hides
+    ['Sheep Hide']       = { { type='farm', desc='Sheep in La Theine Plateau, Konschtat Highlands' },
+                              { type='buy',  desc='S Sandy (D-8) Cletae, ~100g' } },
+    ['Rabbit Hide']      = { { type='farm', desc='Rabbits in East/West Ronfaure' } },
+    ['Lizard Hide']      = { { type='buy',  desc='S Sandy (D-8) Cletae, 600g (Initiate rank)' } },
+    ['Dhalmel Hide']     = { { type='farm', desc='Wild Dhalmel in Tahrongi Canyon, Bull Dhalmel in Buburimu' },
+                              { type='buy',  desc='S Sandy (D-8) Cletae, 2400g (Initiate rank)' } },
+    ['Ram Hide']         = { { type='buy',  desc='S Sandy (D-8) Kueh/Cletae, ~937g' } },
+    ['Raptor Hide']      = { { type='buy',  desc='S Sandy (D-8) Kueh/Cletae, ~2155g' } },
+    ['Tiger Hide']       = { { type='farm', desc='Forest Tiger (Jugner Forest), Sabertooth Tiger (Sauromugue)' },
+                              { type='buy',  desc='S Sandy (D-8) Kueh, 1312g (3:00-18:00)' } },
+    ['Coeurl Hide']      = { { type='farm', desc='Coeurl (Meriphataud Mts), Champaign Coeurl (Sauromugue)' },
+                              { type='buy',  desc='S Sandy (D-8) Kueh, 2700g (3:00-18:00)' } },
+    ['Manticore Hide']   = { { type='farm', desc='Manticores in E/W Altepa Desert, Labyrinth of Onzozo' } },
+    -- Bonecraft
+    ['Marid Tusk']       = { { type='farm', desc='Marid in Bhaflau Thickets, Wajaom Woodlands (break tusks)' },
+                              { type='buy',  desc='Windurst Woods (H-13) Retto-Marutto, 4500g (Craftsman rank)' } },
+    ['Chronos Tooth']    = { { type='buy',  desc='Trade 23x L.Jadeshell to Antiqix in Castle Oztroja (F-8)' } },
+    -- Alchemy
+    ['Giant Stinger']    = { { type='farm', desc='Worker/Soldier Pephredo in Wajaom Woodlands' } },
+    ['Scorpion Stinger'] = { { type='farm', desc='Maze Scorpion / Labyrinth Scorpion in Maze of Shakhrami' } },
+    ['Venom Dust']       = { { type='buy',  desc='Bastok Mines (K-6) Odoba or Lower Jeuno (H-9) Stinknix, 1035g' } },
+};
+
+local TYPE_INFO = {
+    log      = { label='Logging',     color={ 0.50, 0.88, 0.50, 1.0 } },
+    mine     = { label='Mining',      color={ 0.75, 0.75, 0.80, 1.0 } },
+    harvest  = { label='Harvesting',  color={ 1.00, 0.78, 0.35, 1.0 } },
+    excavate = { label='Excavating',  color={ 0.80, 0.55, 0.35, 1.0 } },
+    dig      = { label='Chocobo Dig', color={ 1.00, 0.90, 0.30, 1.0 } },
+    buy      = { label='Buy',         color={ 0.50, 0.85, 0.95, 1.0 } },
+    farm     = { label='Farm',        color={ 0.90, 0.50, 0.50, 1.0 } },
+};
+
+local function show_source_tooltip(mat_str)
+    local sources = SOURCES[mat_str];
+    if sources == nil then return; end
+
+    imgui.BeginTooltip();
+    imgui.TextColored({ 1.0, 0.90, 0.40, 1.0 }, mat_str);
+    imgui.Separator();
+    for _, s in ipairs(sources) do
+        local ti = TYPE_INFO[s.type] or { label=s.type, color={ 1, 1, 1, 1 } };
+        imgui.TextColored(ti.color, string.format('[%s]', ti.label));
+        imgui.SameLine();
+        imgui.Text(s.desc);
+    end
+    imgui.EndTooltip();
+end
 
 -- Event: load
 ashita.events.register('load', 'cwcraft_load', function()
@@ -324,6 +452,7 @@ end
 
 -- Event: d3d_present (render)
 ashita.events.register('d3d_present', 'cwcraft_present', function()
+    if (AshitaCore:GetMemoryManager():GetParty():GetMemberServerId(0) == 0) then return; end
     if (not cwcraft.is_open[1]) then return; end
 
     imgui.SetNextWindowSize({ 700, 500 }, ImGuiCond_FirstUseEver);
@@ -386,6 +515,9 @@ ashita.events.register('d3d_present', 'cwcraft_present', function()
                             imgui.TextColored(row_color, r[2]);
                             imgui.TableSetColumnIndex(2);
                             imgui.TextColored(row_color, r[3]);
+                            if (imgui.IsItemHovered() and SOURCES[r[3]] ~= nil) then
+                                show_source_tooltip(r[3]);
+                            end
                             imgui.TableSetColumnIndex(3);
                             if (r[4] ~= '') then
                                 imgui.TextColored({ 0.75, 0.75, 0.75, 1.0 }, r[4]);
