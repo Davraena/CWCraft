@@ -402,7 +402,7 @@ local SOURCES = {
     ['Goblin Mask / Tonberry Lantern'] = { { type='farm', desc='Goblins in La Theine, Jugner, Pashhow, etc.' },
                                            { type='farm', desc='Tonberries in Temple of Uggalepih / Den of Rancor' } },
     ['Moblin Mask']                    = { { type='farm', desc='Moblins in Oldton / Newton Movalpolos' },
-                                           { type='buy',  desc='Venture boxes' } },
+                                           { type='exp',  desc='Venture boxes' } },
     ['Bugbear Mask']                   = { { type='farm', desc='Bugbears in Oldton / Newton Movalpolos' } },
 };
 
@@ -413,6 +413,7 @@ local TYPE_INFO = {
     excavate = { label='Excavating',  color={ 0.80, 0.55, 0.35, 1.0 } },
     dig      = { label='Chocobo Dig', color={ 1.00, 0.90, 0.30, 1.0 } },
     buy      = { label='Buy',         color={ 0.50, 0.85, 0.95, 1.0 } },
+    exp      = { label='EXP',         color={ 0.85, 0.50, 0.95, 1.0 } },
     farm     = { label='Farm',        color={ 0.90, 0.50, 0.50, 1.0 } },
 };
 
