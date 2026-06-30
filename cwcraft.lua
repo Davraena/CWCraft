@@ -386,6 +386,13 @@ local SOURCES = {
     ['Giant Stinger']    = { { type='farm', desc='Worker/Soldier Pephredo in Wajaom Woodlands' } },
     ['Scorpion Stinger'] = { { type='farm', desc='Maze Scorpion / Labyrinth Scorpion in Maze of Shakhrami' } },
     ['Venom Dust']       = { { type='buy',  desc='Bastok Mines (K-6) Odoba or Lower Jeuno (H-9) Stinknix, 1035g' } },
+    -- Alchemy desynth masks (Glass Fiber / Poison Dust sources)
+    ['Gigas Socks']                    = { { type='farm', desc='Gigas in Misareaux Coast' } },
+    ['Goblin Mask / Tonberry Lantern'] = { { type='farm', desc='Goblins in La Theine, Jugner, Pashhow, etc.' },
+                                           { type='farm', desc='Tonberries in Temple of Uggalepih / Den of Rancor' } },
+    ['Moblin Mask']                    = { { type='farm', desc='Moblins in Oldton / Newton Movalpolos' },
+                                           { type='buy',  desc='Venture boxes' } },
+    ['Bugbear Mask']                   = { { type='farm', desc='Bugbears in Oldton / Newton Movalpolos' } },
 };
 
 local TYPE_INFO = {
